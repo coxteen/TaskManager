@@ -4,7 +4,7 @@ import customtkinter as ctk
 
 def create_window():
     WIDTH = 800
-    HEIGHT = WIDTH - 300
+    HEIGHT = WIDTH - 400
 
     width = get_monitors()[0].width - WIDTH
     height = get_monitors()[0].height - HEIGHT
