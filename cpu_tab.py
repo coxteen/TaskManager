@@ -1,33 +1,28 @@
-import create_window as cw
 import customtkinter as ctk
-import psutil
 import cpuinfo
 
-def create_cpu_window():
-    cpu_font = 40
-    name_font = 26
-    middle_font = 20
-    small_font = 16
+def create_cpu_window(frame):
+    cpu_font = ("Helvetica", 40)
+    name_font = ("Helvetica", 26)
+    middle_font = ("Helvetica", 20)
+    small_font = ("Helvetica", 16)
 
-    window = cw.create_window()
-
-    cpu_label = ctk.CTkLabel(master=window, text="CPU", font=("Helvetica", cpu_font))
-    cpu_name_label = ctk.CTkLabel(master=window, text=cpuinfo.get_cpu_info()['brand_raw'],
-                                  font=("Helvetica", name_font))
-    utilization_label = ctk.CTkLabel(master=window, text="Utilization : ", font=("Helvetica", middle_font))
-    speed_label = ctk.CTkLabel(master=window, text="Speed : ", font=("Helvetica", middle_font))
-    processes_label = ctk.CTkLabel(master=window, text="Processes : ", font=("Helvetica", middle_font))
-    threads_label = ctk.CTkLabel(master=window, text="Threads : ", font=("Helvetica", middle_font))
-    handles_label = ctk.CTkLabel(master=window, text="Handles : ", font=("Helvetica", middle_font))
-    up_time_label = ctk.CTkLabel(master=window, text="Up time : ", font=("Helvetica", middle_font))
-    base_speed_label = ctk.CTkLabel(master=window, text="Base speed : ", font=("Helvetica", small_font))
-    sockets_label = ctk.CTkLabel(master=window, text="Sockets : ", font=("Helvetica", small_font))
-    cores_label = ctk.CTkLabel(master=window, text="Cores : ", font=("Helvetica", small_font))
-    logica_processors_label = ctk.CTkLabel(master=window, text="Logical processors : ", font=("Helvetica", small_font))
-    virtualization_label = ctk.CTkLabel(master=window, text="Virtualization : ", font=("Helvetica", small_font))
-    L1_cache_label = ctk.CTkLabel(master=window, text="L1 cache : ", font=("Helvetica", small_font))
-    L2_cache_label = ctk.CTkLabel(master=window, text="L2 cache : ", font=("Helvetica", small_font))
-    L3_cache_label = ctk.CTkLabel(master=window, text="L3 cache : ", font=("Helvetica", small_font))
+    cpu_label = ctk.CTkLabel(master=frame, text="CPU", font=cpu_font)
+    cpu_name_label = ctk.CTkLabel(master=frame, text=cpuinfo.get_cpu_info()['brand_raw'], font=name_font)
+    utilization_label = ctk.CTkLabel(master=frame, text="Utilization : ", font=middle_font)
+    speed_label = ctk.CTkLabel(master=frame, text="Speed : ", font=middle_font)
+    processes_label = ctk.CTkLabel(master=frame, text="Processes : ", font=middle_font)
+    threads_label = ctk.CTkLabel(master=frame, text="Threads : ", font=middle_font)
+    handles_label = ctk.CTkLabel(master=frame, text="Handles : ", font=middle_font)
+    up_time_label = ctk.CTkLabel(master=frame, text="Up time : ", font=middle_font)
+    base_speed_label = ctk.CTkLabel(master=frame, text="Base speed : ", font=small_font)
+    sockets_label = ctk.CTkLabel(master=frame, text="Sockets : ", font=small_font)
+    cores_label = ctk.CTkLabel(master=frame, text="Cores : ", font=small_font)
+    logical_processors_label = ctk.CTkLabel(master=frame, text="Logical processors : ", font=small_font)
+    virtualization_label = ctk.CTkLabel(master=frame, text="Virtualization : ", font=small_font)
+    l1_cache_label = ctk.CTkLabel(master=frame, text="L1 cache : ", font=small_font)
+    l2_cache_label = ctk.CTkLabel(master=frame, text="L2 cache : ", font=small_font)
+    l3_cache_label = ctk.CTkLabel(master=frame, text="L3 cache : ", font=small_font)
 
     big_padding = 30
     small_padding = 20
@@ -45,12 +40,8 @@ def create_cpu_window():
     base_speed_label.grid(row=1, column=1, padx=(left_padding, 0), pady=small_padding, sticky="w")
     sockets_label.grid(row=2, column=1, padx=(left_padding, 0), pady=small_padding, sticky="w")
     cores_label.grid(row=3, column=1, padx=(left_padding, 0), pady=small_padding, sticky="w")
-    logica_processors_label.grid(row=4, column=1, padx=(left_padding, 0), pady=small_padding, sticky="w")
+    logical_processors_label.grid(row=4, column=1, padx=(left_padding, 0), pady=small_padding, sticky="w")
     virtualization_label.grid(row=5, column=1, padx=(left_padding, 0), pady=small_padding, sticky="w")
-    L1_cache_label.grid(row=1, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
-    L2_cache_label.grid(row=2, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
-    L3_cache_label.grid(row=3, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
-
-    window.mainloop()
-
-create_cpu_window()
+    l1_cache_label.grid(row=1, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
+    l2_cache_label.grid(row=2, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
+    l3_cache_label.grid(row=3, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
