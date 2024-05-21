@@ -3,8 +3,8 @@ import customtkinter as ctk
 
 
 def create_window():
-    WIDTH = 600
-    HEIGHT = WIDTH - 200
+    WIDTH = 800
+    HEIGHT = WIDTH - 300
 
     width = get_monitors()[0].width - WIDTH
     height = get_monitors()[0].height - HEIGHT
@@ -12,5 +12,7 @@ def create_window():
     window = ctk.CTk()
     window.title("Task Manager")
     window.geometry(str(width) + "x" + str(height))
+
+    window.resizable(False, False)
 
     return window
