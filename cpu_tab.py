@@ -52,3 +52,5 @@ def create_cpu_window():
     L3_cache_label.grid(row=3, column=2, padx=(left_padding, 0), pady=small_padding, sticky="w")
 
     window.mainloop()
+
+create_cpu_window()
