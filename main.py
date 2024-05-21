@@ -1,14 +1,35 @@
 import customtkinter as ctk
 from tkinter import ttk
-import create_window
+import create_window as cw
 from PIL import Image
 from screeninfo import get_monitors
 import cpu_tab
 # Import other tab modules as needed
 
 def create_tabs(window):
-    # Create a ttk.Notebook widget
-    notebook = ttk.Notebook(window)
+    style = ttk.Style()
+    style.theme_create('dark_mode', parent='alt', settings={
+        'TNotebook': {
+            'configure': {
+                'background': '#333333',  # Background color of the tab bar
+                'tabmargins': [2, 5, 2, 0],  # Margins: left, top, right, bottom
+            }
+        },
+        'TNotebook.Tab': {
+            'configure': {
+                'background': '#000000',  # Background color of the tabs
+                'foreground': '#FFFFFF',  # Text color of the tabs
+                'padding': [10, 5],  # Padding inside the tab
+            },
+            'map': {
+                'background': [('selected', '#333333'), ('active', '#222222')],
+                'foreground': [('selected', '#FFFFFF'), ('active', '#FFFFFF')],
+            }
+        }
+    })
+    style.theme_use('dark_mode')
+
+    notebook = ttk.Notebook(window, style='TNotebook')
     notebook.pack(expand=True, fill='both')
 
     # Add CPU tab
@@ -39,7 +60,7 @@ def create_tabs(window):
     return notebook
 
 def main():
-    window = create_window.create_window()
+    window = cw.create_window()
     create_tabs(window)
     window.mainloop()
 
