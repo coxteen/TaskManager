@@ -6,15 +6,15 @@ def create_window():
     ctk.set_appearance_mode("dark")  # Modes: system (default), light, dark
     ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
-    WIDTH = 800
-    HEIGHT = WIDTH - 400
+    WIDTH = 1200
+    HEIGHT = WIDTH - 600
 
     width = get_monitors()[0].width - WIDTH
     height = get_monitors()[0].height - HEIGHT
 
     window = ctk.CTk()
     window.title("Task Manager")
-    window.geometry(str(width) + "x" + str(height))
+    window.geometry(f"{WIDTH}x{HEIGHT}")
 
     window.resizable(False, False)
 

@@ -6,6 +6,7 @@ from screeninfo import get_monitors
 import cpu_tab
 # Import other tab modules as needed
 
+
 def create_tabs(window):
     style = ttk.Style()
     style.theme_create('dark_mode', parent='alt', settings={
