@@ -1,7 +1,6 @@
 import customtkinter as ctk
 from tkinter import ttk
 import create_window as cw
-from PIL import Image
 from screeninfo import get_monitors
 import cpu_tab
 # Import other tab modules as needed
@@ -20,7 +19,7 @@ def create_tabs(window):
             'configure': {
                 'background': '#000000',  # Background color of the tabs
                 'foreground': '#FFFFFF',  # Text color of the tabs
-                'padding': [10, 5],  # Padding inside the tab
+                'padding': [50, 5],  # Padding inside the tab
             },
             'map': {
                 'background': [('selected', '#333333'), ('active', '#222222')],

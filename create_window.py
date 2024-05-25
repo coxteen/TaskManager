@@ -16,6 +16,6 @@ def create_window():
     window.title("Task Manager")
     window.geometry(f"{WIDTH}x{HEIGHT}")
 
-    window.resizable(False, False)
+    window.resizable(True, True)
 
     return window
