@@ -3,8 +3,7 @@ from tkinter import ttk
 import create_window as cw
 from screeninfo import get_monitors
 import cpu_tab
-# Import other tab modules as needed
-
+import ram_tab
 
 def create_tabs(window):
     style = ttk.Style()
@@ -45,6 +44,7 @@ def create_tabs(window):
     # Add RAM tab
     ram_frame = ctk.CTkFrame(notebook)
     # Add code to create RAM tab content here
+    ram_tab.create_ram_window(ram_frame)
     notebook.add(ram_frame, text='RAM')
 
     # Add HDD tab
