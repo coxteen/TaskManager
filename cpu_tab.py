@@ -1,4 +1,3 @@
-
 import customtkinter as ctk
 import psutil
 import ctypes
@@ -54,7 +53,7 @@ def create_cpu_window(frame):
         hours, mins = divmod(mins, 60)
         days, hours = divmod(hours, 24)
         up_time_label.configure(text=f"Up time : {days}d {hours}h {mins}m {sec}s")
-        base_speed_label.configure(text=f"Base speed : {psutil.cpu_freq().current / 1000} GHz")
+        base_speed_label.configure(text=f"Base speed : {psutil.cpu_freq().max/ 1000} GHz")
         cores_label.configure(text=f"Cores : {psutil.cpu_count(logical=False)}")
         logical_processors_label.configure(text=f"Logical processors : {psutil.cpu_count(logical=True)}")
 

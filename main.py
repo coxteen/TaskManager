@@ -4,6 +4,7 @@ import create_window as cw
 from screeninfo import get_monitors
 import cpu_tab
 import ram_tab
+import disk_tab
 
 def create_tabs(window):
     style = ttk.Style()
@@ -48,15 +49,19 @@ def create_tabs(window):
     notebook.add(ram_frame, text='RAM')
 
     # Add HDD tab
-    hdd_frame = ctk.CTkFrame(notebook)
+    #hdd_frame = ctk.CTkFrame(notebook)
     # Add code to create HDD tab content here
-    notebook.add(hdd_frame, text='HDD')
+    #notebook.add(hdd_frame, text='HDD')
 
     # Add SSD tab
-    ssd_frame = ctk.CTkFrame(notebook)
+    #ssd_frame = ctk.CTkFrame(notebook)
     # Add code to create SSD tab content here
-    notebook.add(ssd_frame, text='SSD')
+    #notebook.add(ssd_frame, text='SSD')
 
+    #Add Disk tab
+    disk_frame=ctk.CTkFrame(notebook)
+    disk_tab.create_disk_tab(disk_frame)
+    notebook.add(disk_frame, text='Disk')
     return notebook
 
 def main():
