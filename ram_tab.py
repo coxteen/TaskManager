@@ -29,7 +29,7 @@ def create_ram_window(frame):
     fig, ax = plt.subplots()
 
     canvas = FigureCanvasTkAgg(fig, master=frame)
-    canvas.get_tk_widget().place(x=500, y=150, width=600, height=300)
+    canvas.get_tk_widget().place(x=350, y=150, width=1000, height=300)
     memory_percentages = []
 
     def update_graph():
@@ -44,7 +44,7 @@ def create_ram_window(frame):
 
         # Clear and redraw the plot
         ax.clear()
-        ax.plot(memory_percentages, label='Memory Usage (%)')
+        ax.plot(memory_percentages, label='Memory Usage (%)', color='blue')
         ax.set_xlabel('')  # Remove x-axis label
         ax.set_ylabel('Memory Usage (%)')
         ax.set_ylim(0, 100)
