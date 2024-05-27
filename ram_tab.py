@@ -36,11 +36,11 @@ def create_ram_window(frame):
         # Append data to lists
         memory_percentages.append(psutil.virtual_memory().percent)
 
-        if len(memory_percentages) > 10:
+        if len(memory_percentages) > 60:
             del memory_percentages[0]
 
         # Keep only the last 60 data points
-        memory_percentages[:] = memory_percentages[-10:]
+        memory_percentages[:] = memory_percentages[-60:]
 
         # Clear and redraw the plot
         ax.clear()
