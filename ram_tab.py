@@ -1,5 +1,7 @@
-import customtkinter as ctk
 import psutil
+import customtkinter as ctk
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def create_ram_window(frame):
 
@@ -23,6 +25,38 @@ def create_ram_window(frame):
     used_label.grid(row=3, column=0, padx=(left_padding, 0), pady=small_padding, sticky="w")
     percent_label.grid(row=4, column=0, padx=(left_padding, 0), pady=small_padding, sticky="w")
 
+    # Graph
+    fig, ax = plt.subplots()
+
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.get_tk_widget().place(x=500, y=150, width=600, height=300)
+    memory_percentages = []
+
+    def update_graph():
+        # Append data to lists
+        memory_percentages.append(psutil.virtual_memory().percent)
+
+        if len(memory_percentages) > 10:
+            del memory_percentages[0]
+
+        # Keep only the last 60 data points
+        memory_percentages[:] = memory_percentages[-10:]
+
+        # Clear and redraw the plot
+        ax.clear()
+        ax.plot(memory_percentages, label='Memory Usage (%)')
+        ax.set_xlabel('')  # Remove x-axis label
+        ax.set_ylabel('Memory Usage (%)')
+        ax.set_ylim(0, 100)
+        ax.set_xticks([])  # Remove x-axis tick marks
+        ax.set_xticklabels([])  # Remove x-axis tick labels
+        ax.legend(loc='upper right')
+        ax.grid(True)
+
+        canvas.draw()
+
+        frame.after(1000, update_graph)
+
     def update_ram():
         total_label.configure(text=f"Total : {psutil.virtual_memory().total / (1024 ** 3):.2f} GB")
         available_label.configure(text=f"Available : {psutil.virtual_memory().available / (1024 ** 3):.2f} GB")
@@ -32,3 +66,4 @@ def create_ram_window(frame):
         frame.after(1000, update_ram)
 
     update_ram()
+    update_graph()
