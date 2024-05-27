@@ -3,9 +3,10 @@ from tkinter import ttk
 import create_window as cw
 from screeninfo import get_monitors
 import cpu_tab
+import gpu_tab
 import ram_tab
 import disk_tab
-
+import theme_tab
 def create_tabs(window):
     style = ttk.Style()
     style.theme_create('dark_mode', parent='alt', settings={
@@ -39,7 +40,7 @@ def create_tabs(window):
 
     # Add GPU tab
     gpu_frame = ctk.CTkFrame(notebook)
-    # Add code to create GPU tab content here
+    gpu_tab.create_gpu_tab(gpu_frame)
     notebook.add(gpu_frame, text='GPU')
 
     # Add RAM tab
@@ -63,6 +64,13 @@ def create_tabs(window):
     disk_tab.create_disk_tab(disk_frame)
     notebook.add(disk_frame, text='Disk')
     return notebook
+
+    #Add Theme tab
+    theme_frame = ctk.CTkFrame(notebook)
+    theme_tab.create_theme_tab(theme_frame)
+    notebook.add(theme_frame, text='Theme')
+
+
 
 def main():
     window = cw.create_window()
