@@ -3,14 +3,11 @@ import customtkinter as ctk
 
 
 def create_window():
-    ctk.set_appearance_mode("dark")  # Modes: system (default), light, dark
-    ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
+    ctk.set_appearance_mode("dark")
+    ctk.set_default_color_theme("blue")
 
-    WIDTH = 1200
-    HEIGHT = WIDTH - 600
-
-    width = get_monitors()[0].width - WIDTH
-    height = get_monitors()[0].height - HEIGHT
+    WIDTH = 1366
+    HEIGHT = 768
 
     window = ctk.CTk()
     window.title("Task Manager")

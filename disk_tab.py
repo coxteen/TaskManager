@@ -11,7 +11,6 @@ def create_disk_tab(frame):
 
     partitions = psutil.disk_partitions(all=False)
 
-    # Create labels for each disk
     row_index = 1
     for i, partition in enumerate(partitions):
             disk_name_label = ctk.CTkLabel(master=frame, text=f"Name: {partition.device}", font=disk_font)
@@ -26,10 +25,8 @@ def create_disk_tab(frame):
             free_label.grid(row=row_index + 4, column=i + 10, padx=50, pady=20, sticky="w")
             usage_label.grid(row=row_index + 5, column=i + 10, padx=50, pady=20, sticky="w")
 
-            # Get disk usage statistics
             total, used, free, percent = get_disk_usage(partition.device)
 
-            # Update labels with disk usage information
             disk_capacity_label.configure(text=f"Total: {bytes2human(total)}", padx=25, pady=20)
             used_label.configure(text=f"Used: {bytes2human(used)}")
             free_label.configure(text=f"Free: {bytes2human(free)}")
