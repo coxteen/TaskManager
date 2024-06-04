@@ -5,7 +5,6 @@ import time
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-
 def get_gpu_info():
     gpu_info = {
         "name": "N/A",
@@ -30,9 +29,9 @@ def get_gpu_info():
         }
     except Exception as e:
         print(f"Error getting GPU info: {e}")
+        gpu_info["error"] = True
 
     return gpu_info
-
 
 def create_gpu_tab(frame):
     gpu_font = ("Helvetica", 40)
@@ -43,10 +42,10 @@ def create_gpu_tab(frame):
     gpu_label = ctk.CTkLabel(master=frame, text="GPU", font=gpu_font)
     gpu_label.grid(row=0, column=0, padx=20, pady=20, sticky="w")
 
-    gpu_name_label = ctk.CTkLabel(master=frame, text=f"{get_gpu_info()['name']}", font=big_font)
-    gpu_utilization_label = ctk.CTkLabel(master=frame, text="Utilization: ", font=middle_font)
-    gpu_temperature_label = ctk.CTkLabel(master=frame, text="Temperature: ", font=middle_font)
-    gpu_memory_label = ctk.CTkLabel(master=frame, text="Memory: ", font=middle_font)
+    gpu_name_label = ctk.CTkLabel(master=frame, text="N/A", font=big_font)
+    gpu_utilization_label = ctk.CTkLabel(master=frame, text="Utilization: N/A", font=middle_font)
+    gpu_temperature_label = ctk.CTkLabel(master=frame, text="Temperature: N/A", font=middle_font)
+    gpu_memory_label = ctk.CTkLabel(master=frame, text="Memory: N/A", font=middle_font)
 
     gpu_name_label.grid(row=0, column=2, padx=20, pady=10, sticky="w")
     gpu_utilization_label.grid(row=2, column=0, padx=20, pady=10, sticky="w")
@@ -68,6 +67,10 @@ def create_gpu_tab(frame):
 
     def update_graphs():
         gpu_info = get_gpu_info()
+
+        if "error" in gpu_info:
+            return
+
         gpu_utilization.append(gpu_info["utilization"])
         gpu_temperature.append(gpu_info["temperature"])
 
@@ -103,6 +106,15 @@ def create_gpu_tab(frame):
     def update_gpu_info():
         while True:
             gpu_info = get_gpu_info()
+
+            if "error" in gpu_info:
+                gpu_name_label.configure(text="Error: can't get GPU info", font=big_font)
+                gpu_utilization_label.configure(text="Utilization: N/A", font=middle_font)
+                gpu_temperature_label.configure(text="Temperature: N/A", font=middle_font)
+                gpu_memory_label.configure(text="Memory: N/A", font=middle_font)
+                return
+
+            gpu_name_label.configure(text=gpu_info['name'], font=big_font)
             gpu_utilization_label.configure(text=f"Utilization: {gpu_info['utilization']}%", font=small_font)
             gpu_temperature_label.configure(text=f"Temperature: {gpu_info['temperature']}°C", font=small_font)
             gpu_memory_label.configure(
