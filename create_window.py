@@ -9,6 +9,9 @@ def create_window():
     WIDTH = 1366
     HEIGHT = 768
 
+    # width = get_monitors()[0].width - DIFFERENCE
+    # height = get_monitors()[0].height - DIFFERENCE
+
     window = ctk.CTk()
     window.title("Task Manager")
     window.geometry(f"{WIDTH}x{HEIGHT}")

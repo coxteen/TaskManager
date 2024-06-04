@@ -25,8 +25,8 @@ def get_gpu_info():
             "name": output[0],
             "utilization": float(output[1]),
             "temperature": float(output[2]),
-            "memory_used": float(output[3]) / 1024,  # Convert to GB
-            "memory_total": float(output[4]) / 1024  # Convert to GB
+            "memory_used": float(output[3]) / 1024,
+            "memory_total": float(output[4]) / 1024
         }
     except Exception as e:
         print(f"Error getting GPU info: {e}")
